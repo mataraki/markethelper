@@ -10,7 +10,7 @@ int main(void)
     float grade = getgrade(text);
      if (grade < 1)
     {
-        printf("Grade 1\n");
+        printf("Before Grade 1\n");
     }
     else if (grade > 16)
     {
