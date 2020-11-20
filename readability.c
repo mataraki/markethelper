@@ -2,15 +2,27 @@
 #include <stdio.h>
 #include <string.h>
 
-float grade(string text);
+float getgrade(string text);
 
 int main(void)
 {
     string text = get_string("Enter the text: ");
-    printf("Grade %.0f\n", grade(text));
+    float grade = getgrade(text);
+     if (grade < 1)
+    {
+        printf("Grade 1\n");
+    }
+    else if (grade > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %.0f\n", grade);
+    }
 }
 
-float grade(string text)
+float getgrade(string text)
 {
     int letters = 0;
     int words = 1;
