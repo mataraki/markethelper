@@ -107,11 +107,11 @@ void print_winner(void)
             printf("\n");
         }
     }
-    printf("%i\n", winner);
-    for (int i = 0; i < candidate_count; i++)
-    {
-        printf("%i", candidates[i].votes);
-    }
+   // printf("%i\n", winner);
+    //for (int i = 0; i < candidate_count; i++)
+   // {
+    //    printf("%i", candidates[i].votes);
+  //  }
     return;
 }
 
