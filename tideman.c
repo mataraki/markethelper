@@ -112,6 +112,12 @@ int main(int argc, string argv[])
     //}
 
     sort_pairs();
+    
+    //for (int i = 0; i < pair_count; i++)
+    //{
+    //    printf("%i %i\n", pairs[i].winner, pairs[i].loser);
+    //}
+
     lock_pairs();
     print_winner();
     return 0;
@@ -173,13 +179,6 @@ void sort_pairs(void)
 {
     int tempwinner = 0;
     int temploser = 0;
-    //for (int i = 0; i < pair_count; i++)
-    //{
-    //    for (int j = i + 1; j < pair_count; j++)
-    //    {
-    //        preferences[i][j] = abs(preferences[i][j]);
-    //    }
-    //}
     for (int i = 0; i < pair_count; i++)
     {
         for (int j = i + 1; j < pair_count; j++)
@@ -195,10 +194,6 @@ void sort_pairs(void)
             }
         }
     }
-//    for (int i = 0; i < pair_count; i++)
-//    {
-//        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-//    }
     return;
 }
 
@@ -206,21 +201,33 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
     locked[pairs[0].winner][pairs[0].loser] = true;
-//    printf("%i, %i\n", pairs[0].winner, pairs[0].loser);
-    int winnersum = pairs[0].winner;
-    int losersum = pairs[0].loser;
     
     for (int i = 1; i < pair_count; i++)
     {
-        if ((winnersum + pairs[i].winner) != (losersum + pairs[i].loser))
+        int check = 0;
+        
+        for (int j = 0; j < i; j++)
         {
-            locked[pairs[i].winner][pairs[i].loser] = true;
-            winnersum += pairs[i].winner;
-            losersum += pairs[i].loser;
-//            printf("%i, %i\n", pairs[i].winner, pairs[i].loser);
+            if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
+            {
+                check += 1;
+            }
+            if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
+            {
+                check += 1;
+            }
+            if (check != 2)
+            {
+                locked[pairs[i].winner][pairs[i].loser] = true;
+            }
         }
-    }
-    
+    }    
+//        if ((winnersum + pairs[i].winner) != (losersum + pairs[i].loser))
+//        {
+//            locked[pairs[i].winner][pairs[i].loser] = true;
+//            winnersum += pairs[i].winner;
+//            losersum += pairs[i].loser;
+//            printf("%i, %i\n", pairs[i].winner, pairs[i].loser);
     return;
 }
 
