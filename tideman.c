@@ -217,20 +217,13 @@ void lock_pairs(void)
         
         for (int j = 0; j < i; j++)
         {
-            if (pairs[i].loser == pairs[j].winner && pairs[j].loser == pairs[i].winner && locked[pairs[j].winner][pairs[j].loser] == true)
+            if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
             {
-                locked[pairs[i].winner][pairs[i].loser] = true;
+                check += 1;
             }
-            else
+            if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
             {
-                if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
-                {
-                    check += 1;
-                }
-                if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
-                {
-                    check += 1;
-                }
+                check += 1;
             }
         }
         if (check != 2)
