@@ -86,50 +86,13 @@ int main(int argc, string argv[])
                 return 3;
             }
         }
-        //for (int j = 0; j < candidate_count; j++)
-        //{
-        //   printf("%i\n", ranks[j]);
-        //}
-    
         record_preferences(ranks);
-        
-        //for (int x = 0; x < candidate_count; x++)
-        //{
-        //    for (int y = 0; y < candidate_count; y++)
-        //    {
-        //        printf("%i", preferences[x][y]);
-        //    }
-        //}
-
         printf("\n");
     }
 
     add_pairs();
-    
-    //for (int i = 0; i < pair_count; i++)
-    //{
-    //    printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    //}
-
     sort_pairs();
-    
-    //for (int i = 0; i < pair_count; i++)
-    //{
-    //    printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    //}
-
-    //printf("\n");
-
     lock_pairs();
-    
-    //for (int i = 0; i < pair_count; i++)
-    //{
-    //    if (locked[pairs[i].winner][pairs[i].loser] == true)
-    //    {
-    //        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    //    }
-    //}
-    
     print_winner();
     return 0;
 }
@@ -211,8 +174,6 @@ void sort_pairs(void)
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    //locked[pairs[0].winner][pairs[0].loser] = true;
-    
     for (int i = 0; i < pair_count; i++)
     {
         bool checkwinner = false;
@@ -222,6 +183,8 @@ void lock_pairs(void)
         {
             if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
             {
+                cycle_check(pairs[i].winner, pairs)
+                
                 checkloser = true;
             }
             if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
@@ -235,6 +198,17 @@ void lock_pairs(void)
         }
     }    
     return;
+}
+
+bool cycle_check(int winner, int pairs[])
+{
+    for (int j = 0; j < i; j++)
+        {
+            if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
+            {
+                
+            }
+        }
 }
 
 // Print the winner of the election
