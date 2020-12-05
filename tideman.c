@@ -85,10 +85,10 @@ int main(int argc, string argv[])
                 return 3;
             }
         }
-        for (int j = 0; j < candidate_count; j++)
-        {
-           printf("%i\n", ranks[j]);
-        }
+        //for (int j = 0; j < candidate_count; j++)
+        //{
+        //   printf("%i\n", ranks[j]);
+        //}
     
         record_preferences(ranks);
 
@@ -123,7 +123,7 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            if (ranks[i] > ranks[j])
+            if (ranks[i] < ranks[j])
             {
                 preferences[i][j] += 1;
                 preferences[j][i] -= 1;
@@ -135,13 +135,13 @@ void record_preferences(int ranks[])
             }
         }
     }
-//    for (int i = 0; i < candidate_count; i++)
-//    {
-//        for (int j = i + 1; j < candidate_count; j++)
-//        {
-//            printf("%i", preferences[i][j]);
-//        }
-//    }
+    //for (int i = 0; i < candidate_count; i++)
+    //{
+    //    for (int j = i + 1; j < candidate_count; j++)
+    //    {
+    //        printf("%i", preferences[i][j]);
+    //    }
+    //}
     return;
 }
 
