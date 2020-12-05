@@ -133,11 +133,11 @@ void record_preferences(int ranks[])
             if (ranks[i] < ranks[j])
             {
                 preferences[i][j] += 1;
-                preferences[j][i] -= 1;
+                //preferences[j][i] -= 1;
             }
             else
             {
-                preferences[i][j] -= 1;
+                //preferences[i][j] -= 1;
                 preferences[j][i] += 1;
             }
         }
