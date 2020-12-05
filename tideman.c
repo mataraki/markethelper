@@ -85,6 +85,10 @@ int main(int argc, string argv[])
                 return 3;
             }
         }
+        //for (int j = 0; j < candidate_count; j++)
+        //{
+        //    printf("%i\n", ranks[j]);
+        //}
     
         record_preferences(ranks);
 
