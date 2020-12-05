@@ -227,9 +227,9 @@ void lock_pairs(void)
             }
         }
         if (check != 2)
-            {
-                locked[pairs[i].winner][pairs[i].loser] = true;
-            }
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
     }    
 //        if ((winnersum + pairs[i].winner) != (losersum + pairs[i].loser))
 //        {
@@ -255,6 +255,7 @@ void print_winner(void)
         }
     }
     printf("%s", candidates[winner]);
+    printf("\n");
     return;
 }
 
