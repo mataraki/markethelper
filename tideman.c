@@ -183,8 +183,6 @@ void lock_pairs(void)
         {
             if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
             {
-                cycle_check(pairs[i].winner, pairs)
-                
                 checkloser = true;
             }
             if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
@@ -198,17 +196,6 @@ void lock_pairs(void)
         }
     }    
     return;
-}
-
-bool cycle_check(int winner, int pairs[])
-{
-    for (int j = 0; j < i; j++)
-        {
-            if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
-            {
-                
-            }
-        }
 }
 
 // Print the winner of the election
