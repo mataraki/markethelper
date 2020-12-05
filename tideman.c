@@ -256,6 +256,15 @@ void print_winner(void)
     }
     printf("%s", candidates[winner]);
     printf("\n");
+    for (int i = 0; i < pair_count; i++)
+    {
+        
+        if ((i != winner) && (preferences[winner][i] == preferences[i][winner]))
+        {
+            printf("%s", candidates[i]);
+            printf("\n");
+        }
+    }
     return;
 }
 
