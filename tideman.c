@@ -119,6 +119,15 @@ int main(int argc, string argv[])
     //}
 
     lock_pairs();
+    
+    //for (int i = 0; i < pair_count; i++)
+    //{
+    //    if (locked[pairs[i].winner][pairs[i].loser] == true)
+    //    {
+    //        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
+    //    }
+    //}
+    
     print_winner();
     return 0;
 }
