@@ -31,6 +31,12 @@ int candidate_count;
 bool vote(int rank, string name, int ranks[]);
 void record_preferences(int ranks[]);
 void add_pairs(void);
+
+//for (int i = 0; i < pair_count; i++)
+//{
+//    printf("%i %i\n", pairs[i].winner, pairs[i].loser);
+//}
+    
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
@@ -92,13 +98,13 @@ int main(int argc, string argv[])
     
         record_preferences(ranks);
         
-        for (int x = 0; x < candidate_count; x++)
-        {
-            for (int y = 0; y < candidate_count; y++)
-            {
-                printf("%i", preferences[x][y]);
-            }
-        }
+        //for (int x = 0; x < candidate_count; x++)
+        //{
+        //    for (int y = 0; y < candidate_count; y++)
+        //    {
+        //        printf("%i", preferences[x][y]);
+        //    }
+        //}
 
         printf("\n");
     }
@@ -131,16 +137,7 @@ void record_preferences(int ranks[])
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            //if (ranks[i] < ranks[j])
-            //{
-                preferences[ranks[i]][ranks[j]] += 1;
-                //preferences[j][i] -= 1;
-            //}
-            //else if (ranks[i] > ranks[j])
-            //{
-                //preferences[i][j] -= 1;
-                //preferences[j][i] += 1;
-            //}
+            preferences[ranks[i]][ranks[j]] += 1;
         }
     }
     return;
@@ -149,33 +146,24 @@ void record_preferences(int ranks[])
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
-    int k = 1;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            if (preferences[i][j] == 0)
+            if (preferences[i][j] > preferences[j][i])
             {
-                k += 1;
-            }
-            else if (preferences[i][j] > 0)
-            {
-                pairs[i + j - k].winner = i;
-                pairs[i + j - k].loser = j;
+                pairs[pair_count].winner = i;
+                pairs[pair_count].loser = j;
                 pair_count += 1;
             }
-            else
+            else if (preferences[i][j] < preferences[j][i])
             {
-                pairs[i + j - k].winner = j;
-                pairs[i + j - k].loser = i;
+                pairs[pair_count].winner = j;
+                pairs[pair_count].loser = i;
                 pair_count += 1;
             }
         }
     }
-//    for (int i = 0; i < pair_count; i++)
-//    {
-//        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-//    }
     return;
 }
 
