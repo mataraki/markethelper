@@ -91,9 +91,10 @@ int main(int argc, string argv[])
         //}
     
         record_preferences(ranks);
+        
         //for (int x = 0; x < candidate_count; x++)
         //{
-        //    for (int y = x + 1; y < candidate_count; y++)
+        //    for (int y = 0; y < candidate_count; y++)
         //    {
         //        printf("%i", preferences[x][y]);
         //    }
@@ -135,7 +136,7 @@ void record_preferences(int ranks[])
                 preferences[i][j] += 1;
                 //preferences[j][i] -= 1;
             }
-            else
+            else if (ranks[i] > ranks[j])
             {
                 //preferences[i][j] -= 1;
                 preferences[j][i] += 1;
