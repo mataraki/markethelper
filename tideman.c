@@ -204,10 +204,10 @@ void lock_pairs(void)
     
     for (int i = 1; i < pair_count; i++)
     {
-        int check = 0;
-        
         for (int j = 0; j < i; j++)
         {
+            int check = 0;
+            
             if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
             {
                 check += 1;
