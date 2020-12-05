@@ -113,20 +113,22 @@ int main(int argc, string argv[])
 
     sort_pairs();
     
-    //for (int i = 0; i < pair_count; i++)
-    //{
-    //    printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    //}
+    for (int i = 0; i < pair_count; i++)
+    {
+        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
+    }
+
+    printf("\n");
 
     lock_pairs();
     
-    //for (int i = 0; i < pair_count; i++)
-    //{
-    //    if (locked[pairs[i].winner][pairs[i].loser] == true)
-    //    {
-    //        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    //    }
-    //}
+    for (int i = 0; i < pair_count; i++)
+    {
+        if (locked[pairs[i].winner][pairs[i].loser] == true)
+        {
+            printf("%i %i\n", pairs[i].winner, pairs[i].loser);
+        }
+    }
     
     print_winner();
     return 0;
@@ -213,20 +215,21 @@ void lock_pairs(void)
     
     for (int i = 0; i < pair_count; i++)
     {
-        int check = 0;
+        bool checkwinner = false;
+        bool checkloser = false;
         
         for (int j = 0; j < i; j++)
         {
             if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
             {
-                check += 1;
+                checkloser = true;
             }
             if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
             {
-                check += 1;
+                checkwinner = true;;
             }
         }
-        if (check != 2)
+        if (checkwinner == false || checkloser == false)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
