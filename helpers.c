@@ -47,11 +47,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             int avgred = (int) round((double) (image[i-1][j-1].rgbtRed + image[i-1][j].rgbtRed + image[i-1][j+1].rgbtRed + image[i][j-1].rgbtRed + image[i][j].rgbtRed + image[i][j+1].rgbtRed + image[i+1][j-1].rgbtRed + image[i+1][j].rgbtRed + image[i+1][j+1].rgbtRed) / 9);
-            //int avgblue =
-            //int avggreen =
+            int avgblue = (int) round((double) (image[i-1][j-1].rgbtBlue + image[i-1][j].rgbtBlue + image[i-1][j+1].rgbtBlue + image[i][j-1].rgbtBlue + image[i][j].rgbtBlue + image[i][j+1].rgbtBlue + image[i+1][j-1].rgbtBlue + image[i+1][j].rgbtBlue + image[i+1][j+1].rgbtBlue) / 9);
+            int avggreen = (int) round((double) (image[i-1][j-1].rgbtGreen + image[i-1][j].rgbtGreen + image[i-1][j+1].rgbtGreen + image[i][j-1].rgbtGreen + image[i][j].rgbtGreen + image[i][j+1].rgbtGreen + image[i+1][j-1].rgbtGreen + image[i+1][j].rgbtGreen + image[i+1][j+1].rgbtGreen) / 9);
             tempimage[i][j].rgbtRed = avgred;
-            //tempimage[i][j].rgbtBlue = avgblue;
-            //tempimage[i][j].rgbtGreen = avggreen;
+            tempimage[i][j].rgbtBlue = avgblue;
+            tempimage[i][j].rgbtGreen = avggreen;
         }
     }
     for (int i = 0; i < height; i++)
