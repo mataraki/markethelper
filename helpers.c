@@ -323,9 +323,24 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 Gygreen = 255;
             }
-            tempimage[i][j].rgbtRed = (int) round(sqrt(pow((double)Gxred, 2) + pow((double)Gyred, 2)));
-            tempimage[i][j].rgbtBlue = (int) round(sqrt(pow((double)Gxblue, 2) + pow((double)Gyblue, 2)));
-            tempimage[i][j].rgbtGreen = (int) round(sqrt(pow((double)Gxgreen, 2) + pow((double)Gygreen, 2)));
+            double red = round(sqrt(pow((double)Gxred, 2) + pow((double)Gyred, 2)));
+            if (red > 255)
+            {
+                red = 255;
+            }
+            double blue = round(sqrt(pow((double)Gxblue, 2) + pow((double)Gyblue, 2)));
+            if (blue > 255)
+            {
+                blue = 255;
+            }
+            double green = round(sqrt(pow((double)Gxgreen, 2) + pow((double)Gygreen, 2)));
+            if (green > 255)
+            {
+                green = 255;
+            }
+            tempimage[i][j].rgbtRed = (int) red;
+            tempimage[i][j].rgbtBlue = (int) blue;
+            tempimage[i][j].rgbtGreen = (int) green;
         }
     }
     for (int i = 0; i < height; i++)
