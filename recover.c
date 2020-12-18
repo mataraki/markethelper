@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
             //{
             //    jpg_found = 1;
             //}
+            fclose(picture);
             
             char filename[8];
             sprintf(filename, "%03d.jpg", filecount);
