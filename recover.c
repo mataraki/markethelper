@@ -41,11 +41,9 @@ int main(int argc, char *argv[])
             sprintf(filename, "%03d.jpg", filecount);
             picture = fopen(filename, "a");
             filecount++;
-            
-            fwrite(&buffer, 512, 1, picture);
         }
         
-        if (jpg_found == 1)
+        if (jpg_found)
         {
             fwrite(&buffer, 512, 1, picture);
         }
