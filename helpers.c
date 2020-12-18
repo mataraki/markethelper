@@ -162,5 +162,180 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE tempimage[height][width];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            int Gxred;
+            int Gyred;
+            int Gxblue;
+            int Gyblue;
+            int Gxgreen;
+            int Gygreen;
+            if (i == 0)
+            {
+                if (j == 0)
+                {
+                    Gxred = (int) round((double)(image[i][j + 1].rgbtRed * 2 + image[i + 1][j + 1].rgbtRed * 1));
+                    Gyred = (int) round((double)(image[i + 1][j].rgbtRed * 2 + image[i + 1][j + 1].rgbtRed * 1));
+                    Gxblue = (int) round((double)(image[i][j + 1].rgbtBlue * 2 + image[i + 1][j + 1].rgbtBlue * 1));
+                    Gyblue = (int) round((double)(image[i + 1][j].rgbtBlue * 2 + image[i + 1][j + 1].rgbtBlue * 1));
+                    Gxgreen = (int) round((double)(image[i][j + 1].rgbtGreen * 2 + image[i + 1][j + 1].rgbtGreen * 1));
+                    Gygreen = (int) round((double)(image[i + 1][j].rgbtGreen * 2 + image[i + 1][j + 1].rgbtGreen * 1));
+                }
+                else if (j == width - 1)
+                {
+                    Gxred = (int) round((double)(image[i][j - 1].rgbtRed * (-2) + image[i + 1][j - 1].rgbtRed * (-1)));
+                    Gyred = (int) round((double)(image[i + 1][j - 1].rgbtRed * 1 + image[i + 1][j].rgbtRed * 2));
+                    Gxblue = (int) round((double)(image[i][j - 1].rgbtBlue * (-2) + image[i + 1][j - 1].rgbtBlue * (-1)));
+                    Gyblue = (int) round((double)(image[i + 1][j - 1].rgbtBlue * 1 + image[i + 1][j].rgbtBlue * 2));
+                    Gxgreen = (int) round((double)(image[i][j - 1].rgbtGreen * (-2) + image[i + 1][j - 1].rgbtGreen * (-1)));
+                    Gygreen = (int) round((double)(image[i + 1][j - 1].rgbtGreen * 1 + image[i + 1][j].rgbtGreen * 2));
+                }
+                else
+                {
+                    Gxred = (int) round((double)(image[i][j - 1].rgbtRed * (-2) + image[i + 1][j - 1].rgbtRed * (-1) +
+                                                 image[i][j + 1].rgbtRed * 2 + image[i + 1][j + 1].rgbtRed * 1));
+                    Gyred = (int) round((double)(image[i + 1][j - 1].rgbtRed * 1 + image[i + 1][j].rgbtRed * 2 +
+                                                 image[i + 1][j + 1].rgbtRed * 1));
+                    Gxblue = (int) round((double)(image[i][j - 1].rgbtBlue * (-2) + image[i + 1][j - 1].rgbtBlue * (-1) +
+                                                  image[i][j + 1].rgbtBlue * 2 + image[i + 1][j + 1].rgbtBlue * 1));
+                    Gyblue = (int) round((double)(image[i + 1][j - 1].rgbtBlue * 1 + image[i + 1][j].rgbtBlue * 2 +
+                                                  image[i + 1][j + 1].rgbtBlue * 1));
+                    Gxgreen = (int) round((double)(image[i][j - 1].rgbtGreen * (-2) + image[i + 1][j - 1].rgbtGreen * (-1) +
+                                                   image[i][j + 1].rgbtGreen * 2 + image[i + 1][j + 1].rgbtGreen * 1));
+                    Gygreen = (int) round((double)(image[i + 1][j - 1].rgbtGreen * 1 + image[i + 1][j].rgbtGreen * 2 +
+                                                   image[i + 1][j + 1].rgbtGreen * 1));
+                }
+            }
+            else if (i == height - 1)
+            {
+                if (j == 0)
+                {
+                    Gxred = (int) round((double)(image[i - 1][j + 1].rgbtRed * 1 + image[i][j + 1].rgbtRed * 2));
+                    Gyred = (int) round((double)(image[i - 1][j].rgbtRed * (-2) + image[i - 1][j + 1].rgbtRed * (-1)));
+                    Gxblue = (int) round((double)(image[i - 1][j + 1].rgbtBlue * 1 + image[i][j + 1].rgbtBlue * 2));
+                    Gyblue = (int) round((double)(image[i - 1][j].rgbtBlue * (-2) + image[i - 1][j + 1].rgbtBlue * (-1)));
+                    Gxgreen = (int) round((double)(image[i - 1][j + 1].rgbtGreen * 1 + image[i][j + 1].rgbtGreen * 2));
+                    Gygreen = (int) round((double)(image[i - 1][j].rgbtGreen * (-2) + image[i - 1][j + 1].rgbtGreen * (-1)));
+                }
+                else if (j == width - 1)
+                {
+                    Gxred = (int) round((double)(image[i - 1][j - 1].rgbtRed * (-1) + image[i][j - 1].rgbtRed * (-2)));
+                    Gyred = (int) round((double)(image[i - 1][j - 1].rgbtRed * (-1) + image[i - 1][j].rgbtRed * (-2)));
+                    Gxblue = (int) round((double)(image[i - 1][j - 1].rgbtBlue * (-1) + image[i][j - 1].rgbtBlue * (-2)));
+                    Gyblue = (int) round((double)(image[i - 1][j - 1].rgbtBlue * (-1) + image[i - 1][j].rgbtBlue * (-2)));
+                    Gxgreen = (int) round((double)(image[i - 1][j - 1].rgbtGreen * (-1) + image[i][j - 1].rgbtGreen * (-2)));
+                    Gygreen = (int) round((double)(image[i - 1][j - 1].rgbtGreen * (-1) + image[i - 1][j].rgbtGreen * (-2)));
+                }
+                else
+                {
+                    Gxred = (int) round((double)(image[i - 1][j + 1].rgbtRed * 1 + image[i][j + 1].rgbtRed * 2 +
+                                                 image[i - 1][j - 1].rgbtRed * (-1) + image[i][j - 1].rgbtRed * (-2)));
+                    Gyred = (int) round((double)(image[i - 1][j].rgbtRed * (-2) + image[i - 1][j + 1].rgbtRed * (-1) +
+                                                 image[i - 1][j - 1].rgbtRed * (-1)));
+                    Gxblue = (int) round((double)(image[i - 1][j + 1].rgbtBlue * 1 + image[i][j + 1].rgbtBlue * 2 +
+                                                  image[i - 1][j - 1].rgbtBlue * (-1) + image[i][j - 1].rgbtBlue * (-2)));
+                    Gyblue = (int) round((double)(image[i - 1][j].rgbtBlue * (-2) + image[i - 1][j + 1].rgbtBlue * (-1) +
+                                                  image[i - 1][j - 1].rgbtBlue * (-1)));
+                    Gxgreen = (int) round((double)(image[i - 1][j + 1].rgbtGreen * 1 + image[i][j + 1].rgbtGreen * 2 +
+                                                   image[i - 1][j - 1].rgbtGreen * (-1) + image[i][j - 1].rgbtGreen * (-2)));
+                    Gygreen = (int) round((double)(image[i - 1][j].rgbtGreen * (-2) + image[i - 1][j + 1].rgbtGreen * (-1) +
+                                                   image[i - 1][j - 1].rgbtGreen * (-1)));
+                }
+            }
+            else
+            {
+                if (j == 0)
+                {
+                    Gxred = (int) round((double)(image[i - 1][j + 1].rgbtRed * 1 + image[i][j + 1].rgbtRed * 2 +
+                                                 image[i + 1][j + 1].rgbtRed * 1));
+                    Gyred = (int) round((double)(image[i - 1][j].rgbtRed * (-2) + image[i - 1][j + 1].rgbtRed * (-1) +
+                                                 image[i + 1][j].rgbtRed * 2 + image[i + 1][j + 1].rgbtRed * 1));
+                    Gxblue = (int) round((double)(image[i - 1][j + 1].rgbtBlue * 1 + image[i][j + 1].rgbtBlue * 2 +
+                                                  image[i + 1][j + 1].rgbtBlue * 1));
+                    Gyblue = (int) round((double)(image[i - 1][j].rgbtBlue * (-2) + image[i - 1][j + 1].rgbtBlue * (-1) +
+                                                  image[i + 1][j].rgbtBlue * 2 + image[i + 1][j + 1].rgbtBlue * 1));
+                    Gxgreen = (int) round((double)(image[i - 1][j + 1].rgbtGreen * 1 + image[i][j + 1].rgbtGreen * 2 +
+                                                   image[i + 1][j + 1].rgbtGreen * 1));
+                    Gygreen = (int) round((double)(image[i - 1][j].rgbtGreen * (-2) + image[i - 1][j + 1].rgbtGreen * (-1) +
+                                                   image[i + 1][j].rgbtGreen * 2 + image[i + 1][j + 1].rgbtGreen * 1));
+                }
+                else if (j == width - 1)
+                {
+                    Gxred = (int) round((double)(image[i - 1][j - 1].rgbtRed * (-1) + image[i][j - 1].rgbtRed * (-2) +
+                                                 image[i + 1][j - 1].rgbtRed * (-1)));
+                    Gyred = (int) round((double)(image[i - 1][j - 1].rgbtRed * (-1) + image[i - 1][j].rgbtRed * (-2) +
+                                                 image[i + 1][j - 1].rgbtRed * 1 + image[i + 1][j].rgbtRed * 2));
+                    Gxblue = (int) round((double)(image[i - 1][j - 1].rgbtBlue * (-1) + image[i][j - 1].rgbtBlue * (-2) +
+                                                  image[i + 1][j - 1].rgbtBlue * (-1)));
+                    Gyblue = (int) round((double)(image[i - 1][j - 1].rgbtBlue * (-1) + image[i - 1][j].rgbtBlue * (-2) +
+                                                  image[i + 1][j - 1].rgbtBlue * 1 + image[i + 1][j].rgbtBlue * 2));
+                    Gxgreen = (int) round((double)(image[i - 1][j - 1].rgbtGreen * (-1) + image[i][j - 1].rgbtGreen * (-2) +
+                                                   image[i + 1][j - 1].rgbtGreen * (-1)));
+                    Gygreen = (int) round((double)(image[i - 1][j - 1].rgbtGreen * (-1) + image[i - 1][j].rgbtGreen * (-2) +
+                                                   image[i + 1][j - 1].rgbtGreen * 1 + image[i + 1][j].rgbtGreen * 2));
+                }
+                else
+                {
+                    Gxred = (int) round((double)(image[i - 1][j - 1].rgbtRed * (-1) + image[i][j - 1].rgbtRed * (-2) +
+                                                 image[i + 1][j - 1].rgbtRed * (-1) + image[i - 1][j + 1].rgbtRed * 1 + 
+                                                 image[i][j + 1].rgbtRed * 2 + image[i + 1][j + 1].rgbtRed * 1));
+                    Gyred = (int) round((double)(image[i - 1][j].rgbtRed * (-2) + image[i - 1][j + 1].rgbtRed * (-1) +
+                                                 image[i - 1][j - 1].rgbtRed * (-1) + image[i + 1][j - 1].rgbtRed * 1 + 
+                                                 image[i + 1][j].rgbtRed * 2 + image[i + 1][j + 1].rgbtRed * 1));
+                    Gxblue = (int) round((double)(image[i - 1][j - 1].rgbtBlue * (-1) + image[i][j - 1].rgbtBlue * (-2) +
+                                                  image[i + 1][j - 1].rgbtBlue * (-1) + image[i - 1][j + 1].rgbtBlue * 1 + 
+                                                  image[i][j + 1].rgbtBlue * 2 + image[i + 1][j + 1].rgbtBlue * 1));
+                    Gyblue = (int) round((double)(image[i - 1][j].rgbtBlue * (-2) + image[i - 1][j + 1].rgbtBlue * (-1) +
+                                                  image[i - 1][j - 1].rgbtBlue * (-1) + image[i + 1][j - 1].rgbtBlue * 1 + 
+                                                  image[i + 1][j].rgbtBlue * 2 + image[i + 1][j + 1].rgbtBlue * 1));
+                    Gxgreen = (int) round((double)(image[i - 1][j - 1].rgbtGreen * (-1) + image[i][j - 1].rgbtGreen * (-2) + 
+                                                   image[i + 1][j - 1].rgbtGreen * (-1) + image[i - 1][j + 1].rgbtGreen * 1 + 
+                                                   image[i][j + 1].rgbtGreen * 2 + image[i + 1][j + 1].rgbtGreen * 1));
+                    Gygreen = (int) round((double)(image[i - 1][j].rgbtGreen * (-2) + image[i - 1][j + 1].rgbtGreen * (-1) +
+                                                   image[i - 1][j - 1].rgbtGreen * (-1) + image[i + 1][j - 1].rgbtGreen * 1 + 
+                                                   image[i + 1][j].rgbtGreen * 2 + image[i + 1][j + 1].rgbtGreen * 1));
+                }
+            }
+            if (Gxred > 255 || Gxred < -255)
+            {
+                Gxred = 255;
+            }
+            if (Gyred > 255 || Gyred < -255)
+            {
+                Gyred = 255;
+            }
+            if (Gxblue > 255 || Gxblue < -255)
+            {
+                Gxblue = 255;
+            }
+            if (Gyblue > 255 || Gyblue < -255)
+            {
+                Gyblue = 255;
+            }
+            if (Gxgreen > 255 || Gxgreen < -255)
+            {
+                Gxgreen = 255;
+            }
+            if (Gygreen > 255 || Gygreen < -255)
+            {
+                Gygreen = 255;
+            }
+            tempimage[i][j].rgbtRed = (int) round(sqrt(pow((double)Gxred, 2) + pow((double)Gyred, 2)));
+            tempimage[i][j].rgbtBlue = (int) round(sqrt(pow((double)Gxblue, 2) + pow((double)Gyblue, 2)));
+            tempimage[i][j].rgbtGreen = (int) round(sqrt(pow((double)Gxgreen, 2) + pow((double)Gygreen, 2)));
+        }
+    }
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image[i][j].rgbtRed = tempimage[i][j].rgbtRed;
+            image[i][j].rgbtBlue = tempimage[i][j].rgbtBlue;
+            image[i][j].rgbtGreen = tempimage[i][j].rgbtGreen;
+        }
+    }
     return;
 }
