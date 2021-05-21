@@ -22,14 +22,19 @@ int main(void)
     while (result < start);
 
     // TODO: Calculate number of years until we reach threshold
-    int n = start, count = 0;
-
-    do
+    int count = 0;
+    
+    if (start != result)
     {
-        n += n / 3 - n / 4;
-        count += 1;
-     }
-    while (n < result);
+        int n = start;
+
+        do
+        {
+            n += n / 3 - n / 4;
+            count += 1;
+        }
+        while (n < result);
+    }
 
     // TODO: Print number of years
     printf("Years: %i\n", count);
