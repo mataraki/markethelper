@@ -9,7 +9,7 @@ int main(void)
     do
     {
         start = get_int("Enter the starting amount of llamas (must be 9 or more): ");
-     }
+    }
     while (start < 9);
 
     // TODO: Prompt for end size
@@ -18,7 +18,7 @@ int main(void)
     do
     {
         result = get_int("Enter the resulting amount of llamas (must not be less than starting amount): ");
-     }
+    }
     while (result < start);
 
     // TODO: Calculate number of years until we reach threshold
