@@ -84,18 +84,19 @@ bool load(const char *dictionary)
     }
 
     // TODO hash the words and insert them into table
-    else while (fscanf(file, "%s", w) != EOF)
-    {
-        //Hash the word
-        position = hash(w);
-        vocabulary += 1;
+    else 
+        while (fscanf(file, "%s", w) != EOF)
+        {
+            //Hash the word
+            position = hash(w);
+            vocabulary += 1;
 
-        // Creates a node and sets it right
-        node *n = malloc(sizeof(node));
-        strcpy(n->word, w);
-        n->next = table[position]->next;
-        table[position]->next = n;
-    }
+            // Creates a node and sets it right
+            node *n = malloc(sizeof(node));
+            strcpy(n->word, w);
+            n->next = table[position]->next;
+            table[position]->next = n;
+        }
     
     free(w);
     fclose(file);
