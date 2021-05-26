@@ -73,6 +73,7 @@ bool load(const char *dictionary)
     for (int i = 0; i < 677; i++)
     {
         table[i] = malloc(sizeof(node));
+        table[i]->next = NULL;
     }
 
     FILE *file = fopen(dictionary, "r");
@@ -115,14 +116,12 @@ bool unload(void)
     for (int i = 0; i < 677; i++)
     {
         node *cursor = table[i];
-        if (cursor != NULL)
+
+        while (cursor != NULL)
         {
-            while (cursor != NULL)
-            {
-                node *tmp = cursor;
-                cursor = cursor->next;
-                free(tmp);
-            }
+            node *tmp = cursor;
+            cursor = cursor->next;
+            free(tmp);
         }
     }
     return true;
