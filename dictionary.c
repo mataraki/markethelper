@@ -30,9 +30,9 @@ bool check(const char *word)
 {
     // TODO
     int position = hash(word);
-    
+
     node *cursor = table[position];
-    
+
     while (cursor != NULL)
     {
         if (strcasecmp(cursor->word, word) == 0)
@@ -61,8 +61,7 @@ unsigned int hash(const char *word)
     {
         index = (tolower(word[0]) - 97) * 26 + tolower(word[1]) - 97;
     }
-    
-    printf("%i\n", index);
+
     return index;
 }
 
@@ -71,7 +70,7 @@ bool load(const char *dictionary)
 {
     char *w = malloc(LENGTH);
     int position;
-    
+
     for (int i = 0; i < 677; i++)
     {
         table[i] = malloc(sizeof(node));
@@ -87,9 +86,6 @@ bool load(const char *dictionary)
     // TODO hash the words and insert them into table
     else while (fscanf(file, "%s", w) != EOF)
     {
-        fscanf(file, "%s", w);
-        printf("%s\n", w);
-
         //Hash the word
         position = hash(w);
         vocabulary += 1;
@@ -118,7 +114,7 @@ bool unload(void)
     for (int i = 0; i < 677; i++)
     {
         node *cursor = table[i];
-        
+
         while (cursor != NULL)
         {
             node *tmp = cursor;
