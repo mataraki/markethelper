@@ -31,7 +31,7 @@ bool check(const char *word)
     // TODO
     int position = hash(word);
 
-    node *cursor = table[position];
+    node *cursor = table[position]->next;
 
     while (cursor != NULL)
     {
@@ -95,6 +95,7 @@ bool load(const char *dictionary)
         n->next = table[position]->next;
         table[position]->next = n;
     }
+    
     free(w);
     fclose(file);
     return true;
@@ -114,12 +115,14 @@ bool unload(void)
     for (int i = 0; i < 677; i++)
     {
         node *cursor = table[i];
-
-        while (cursor != NULL)
+        if (cursor != NULL)
         {
-            node *tmp = cursor;
-            cursor = cursor->next;
-            free(tmp);
+            while (cursor != NULL)
+            {
+                node *tmp = cursor;
+                cursor = cursor->next;
+                free(tmp);
+            }
         }
     }
     return true;
