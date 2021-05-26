@@ -30,18 +30,21 @@ bool check(const char *word)
 {
     // TODO
     int position = hash(word);
-
-    node *cursor = table[position]->next;
-
-    while (cursor != NULL)
+    
+    if (table[position]->next != NULL)
     {
-        if (strcasecmp(cursor->word, word) == 0)
+        node *cursor = table[position]->next;
+
+        while (cursor != NULL)
         {
-            return true;
-        }
-        else
-        {
-            cursor = cursor->next;
+            if (strcasecmp(cursor->word, word) == 0)
+            {
+                return true;
+            }
+            else
+            {
+                cursor = cursor->next;
+            }
         }
     }
     return false;
