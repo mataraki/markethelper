@@ -96,6 +96,7 @@ bool load(const char *dictionary)
         table[position]->next = n;
     }
     free(w);
+    fclose(file);
     return true;
 }
 
