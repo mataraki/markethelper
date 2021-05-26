@@ -61,7 +61,6 @@ unsigned int hash(const char *word)
     {
         index = (tolower(word[0]) - 97) * 26 + tolower(word[1]) - 97;
     }
-
     return index;
 }
 
@@ -96,10 +95,7 @@ bool load(const char *dictionary)
         n->next = table[position]->next;
         table[position]->next = n;
     }
-    
     free(w);
-    fclose(file);
-    
     return true;
 }
 
@@ -124,7 +120,6 @@ bool unload(void)
             cursor = cursor->next;
             free(tmp);
         }
-        free(table[i]);
     }
     return true;
 }
