@@ -35,7 +35,7 @@ if luhn % 10 == 0:
     elif (number2 > 50 and number2 < 56) and (length == 16):
         print("MASTERCARD")
         
-    elif (number2 / 10 == 4) and (length == 13 or length == 16):
+    elif (int(number2 / 10) == 4) and (length == 13 or length == 16):
         print("VISA")
         
     else:
