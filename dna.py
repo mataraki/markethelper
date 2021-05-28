@@ -20,7 +20,9 @@ def main():
             
     with open(sys.argv[2], "r") as file:
         sequence = file.read()
-            
+    
+    found = False
+    
     for dna in dnas:
         if "AGATC" in dna:
             if dna["AGATC"] != STRfinder(sequence, "AGATC"):
@@ -46,7 +48,11 @@ def main():
         if "TCTG" in dna:
             if dna["TCTG"] != STRfinder(sequence, "TCTG"):
                 continue
+        found = True
         print(dna["name"])
+    
+    if found == False:
+        print("No match")
 
 
 def STRfinder(sequence, STR):
