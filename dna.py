@@ -68,22 +68,22 @@ def STRfinder(sequence, STR):
     
 def integerize(dna):
     for i in range(len(dna)):
-                if "AGATC" in dna:
-                    dna["AGATC"] = int(dna["AGATC"])
-                if "TTTTTTCT" in dna:
-                    dna["TTTTTTCT"] = int(dna["TTTTTTCT"])
-                if "AATG" in dna:
-                    dna["AATG"] = int(dna["AATG"])
-                if "TCTAG" in dna:
-                    dna["TCTAG"] = int(dna["TCTAG"])
-                if "GATA" in dna:
-                    dna["GATA"] = int(dna["GATA"])
-                if "TATC" in dna:
-                    dna["TATC"] = int(dna["TATC"])
-                if "GAAA" in dna:
-                    dna["GAAA"] = int(dna["GAAA"])
-                if "TCTG" in dna:
-                    dna["TCTG"] = int(dna["TCTG"])
+        if "AGATC" in dna:
+            dna["AGATC"] = int(dna["AGATC"])
+        if "TTTTTTCT" in dna:
+            dna["TTTTTTCT"] = int(dna["TTTTTTCT"])
+        if "AATG" in dna:
+            dna["AATG"] = int(dna["AATG"])
+        if "TCTAG" in dna:
+            dna["TCTAG"] = int(dna["TCTAG"])
+        if "GATA" in dna:
+            dna["GATA"] = int(dna["GATA"])
+        if "TATC" in dna:
+            dna["TATC"] = int(dna["TATC"])
+        if "GAAA" in dna:
+            dna["GAAA"] = int(dna["GAAA"])
+        if "TCTG" in dna:
+            dna["TCTG"] = int(dna["TCTG"])
                     
     return dna
         
