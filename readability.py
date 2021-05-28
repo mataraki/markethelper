@@ -1,8 +1,9 @@
 from cs50 import get_string
 
+
 def main():
     text = get_string("Text: ")
-    grade = int(getgrade(text))
+    grade = round(getgrade(text))
     
     if grade < 1:
         print("Before Grade 1")
@@ -12,6 +13,7 @@ def main():
     
     else:
         print(f"Grade {grade}")
+    
     
 def getgrade(text):
     letters = 0
@@ -37,6 +39,7 @@ def getgrade(text):
             
     grade = 0.0588 * letters * 100 / words - 0.296 * sentences * 100 / words - 15.8
     return grade
+
 
 if __name__ == "__main__":
     main()
