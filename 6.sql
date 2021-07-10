@@ -1,1 +1,1 @@
-SELECT AVG(rating) FROM ratings WHERE (SELECT id FROM movies WHERE year = 2012);
+SELECT ROUND(AVG(rating), 2) FROM ratings WHERE (SELECT id FROM movies WHERE year = 2012);
