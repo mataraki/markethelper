@@ -1,16 +1,16 @@
 -- Keep a log of any SQL queries you execute as you solve the mystery.
 
 -- Get the description of the crime by the date and the place
-SELECT description FROM crime_scene_reports WHERE 
+SELECT description FROM crime_scene_reports WHERE
 year = 2020
 AND month = 7
 AND day = 28
 AND street = "Chamberlin Street";
--- Descripiton is "Theft of the CS50 duck took place at 10:15am at the Chamberlin Street courthouse. 
+-- Descripiton is "Theft of the CS50 duck took place at 10:15am at the Chamberlin Street courthouse.
 -- Interviews were conducted today with three witnesses who were present at the time — each of their interview transcripts mentions the courthouse."
 
 -- Get transcripts of the interviews from that day
-SELECT name, transcript FROM interviews WHERE 
+SELECT name, transcript FROM interviews WHERE
 year = 2020
 AND month = 7
 AND day = 28;
@@ -39,6 +39,7 @@ year = 2020
 AND month = 7
 AND day = 28
 AND hour < 11
+AND hour > 9
 AND minute < 30
 AND activity = "exit"
 AND license_plate IN ("30G67EN", "L93JTIZ", "8X428L0", "1106N58", "QX4YZN3", "4328GD8", "322W7JE", "94KL13X");
