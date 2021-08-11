@@ -7,27 +7,27 @@
         <title>Trivia!</title>
 
         <script>
+            function buttonClick(button) {
+                document.querySelectorAll('button').forEach(element => element.style.backgroundColor = '#D9EDFF');
+                if (button.id == 'red') {
+                    button.style.backgroundColor = 'green';
+                    answer1.innerHTML = 'Correct!';
+                }
+                else {
+                    button.style.backgroundColor = 'red';
+                    answer1.innerHTML = 'Incorrect!';
+                }
+            }
 
             document.addEventListener('DOMContentLoaded', function() {
-                document.querySelector('#blue').onclick = function() {
-                    document.querySelector('#blue').style.backgroundColor = 'red';
-                    answer1.innerHTML = 'Incorrect!';
-                };
-                document.querySelector('#orange').onclick = function() {
-                    document.querySelector('#orange').style.backgroundColor = 'red';
-                    answer1.innerHTML = 'Incorrect!';
-                };
-                document.querySelector('#purple').onclick = function() {
-                    document.querySelector('#purple').style.backgroundColor = 'red';
-                    answer1.innerHTML = 'Incorrect!';
-                };
-                document.querySelector('#red').onclick = function() {
-                    document.querySelector('#red').style.backgroundColor = 'green';
-                    answer1.innerHTML = 'Correct!';
-                };
-                document.querySelector('form').addEventListener('submit', function() {
+                document.querySelectorAll('button').forEach(function(element){
+                    element.onclick = function() {buttonClick(this);};
+                });
+
+                document.querySelector('form').addEventListener('submit', function(event) {
+                    event.preventDefault();
                     let name = document.querySelector('#name').value;
-                    if (name == 'Shredder') {
+                    if (name.toUpperCase() == 'SHREDDER') {
                         document.querySelector('#name').style.backgroundColor = 'green';
                         answer2.innerHTML = 'Correct!';
                     }
