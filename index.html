@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('#blue').onclick = function() {
+                    document.querySelector('#blue').style.backgroundColor = 'red';
+                    answer1.innerHTML = 'Incorrect!';
+                };
+                document.querySelector('#orange').onclick = function() {
+                    document.querySelector('#orange').style.backgroundColor = 'red';
+                    answer1.innerHTML = 'Incorrect!';
+                };
+                document.querySelector('#purple').onclick = function() {
+                    document.querySelector('#purple').style.backgroundColor = 'red';
+                    answer1.innerHTML = 'Incorrect!';
+                };
+                document.querySelector('#red').onclick = function() {
+                    document.querySelector('#red').style.backgroundColor = 'green';
+                    answer1.innerHTML = 'Correct!';
+                };
+                document.querySelector('form').addEventListener('submit', function() {
+                    let name = document.querySelector('#name').value;
+                    if (name == 'Shredder') {
+                        document.querySelector('#name').style.backgroundColor = 'green';
+                        answer2.innerHTML = 'Correct!';
+                    }
+                    else {
+                        document.querySelector('#name').style.backgroundColor = 'red';
+                        answer2.innerHTML = 'Incorrect!';
+                    }
+                });
+            });
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>TMNT's Raphael wears mask of which color? </h3>
+
+                <button id="blue">Blue</button>
+                <button id="orange">Orange</button>
+                <button id="purple">Purple</button>
+                <button id="red">Red</button>
+
+                <p id="answer1"></p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <h3>What is the name of TMNT's main antagonist? </h3>
+
+                <form>
+                    <input autocomplete="off" autofocus id="name" placeholder="Name" type="text">
+                    <input type="submit">
+                </form>
+
+                <p id="answer2"></p>
+
+            </div>
+
+        </div>
+    </body>
+</html>
