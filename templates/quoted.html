@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <style type="text/css">
+        th {
+            padding: 0 50px;
+        }
+    </style>
+
+    <h1>Quote</h1>
+    <table style="margin-left:auto;margin-right:auto;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ price }}</td>
+                    <td>{{ symbol }}</td>
+                </tr>
+        </tbody>
+    </table>
+{% endblock %}

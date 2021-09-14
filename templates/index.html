@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <style type="text/css">
+        th {
+            padding: 0 50px;
+        }
+    </style>
+    <h3 align="right">Your balance: {{ cash }}</h3>
+    <form align="right" action="/" method="post">
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="add" placeholder="Amount" type="text">
+            <button class="btn btn-primary" type="submit">Add funds</button>
+        </div>
+    </form>
+    <br>
+    <br>
+    <h1>Portfolio</h1>
+    <table style="margin-left:auto;margin-right:auto;">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for holding in holdings %}
+                <tr>
+                    <td>{{ holding.symbol }}</td>
+                    <td>{{ holding.shares }}</td>
+                    <td>{{ holding.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
