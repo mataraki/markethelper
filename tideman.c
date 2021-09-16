@@ -171,31 +171,40 @@ void sort_pairs(void)
     return;
 }
 
+// Recursive function to check if entry makes a circle
+bool makes_circle(int cycle_start, int loser)
+{
+    if (loser == cycle_start)
+    {
+        // If the current loser is the cycle start
+        // The entry makes a circle
+        return true;
+    }
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[loser][i])
+        {
+            if (makes_circle(cycle_start, i))
+            {
+                // Forward progress through the circle
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
-void lock_pairs(void)
+void lock_pairs()
 {
     for (int i = 0; i < pair_count; i++)
     {
-        bool checkwinner = false;
-        bool checkloser = false;
-        
-        for (int j = 0; j < i; j++)
+        if (!makes_circle(pairs[i].winner, pairs[i].loser))
         {
-            if (pairs[i].loser == pairs[j].winner && locked[pairs[j].winner][pairs[j].loser] == true)
-            {
-                checkloser = true;
-            }
-            if (pairs[i].winner == pairs[j].loser && locked[pairs[j].winner][pairs[j].loser] == true)
-            {
-                checkwinner = true;;
-            }
-        }
-        if (checkwinner == false || checkloser == false)
-        {
+            // Lock the pair unless it makes a circle
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
-    }    
-    return;
+    }
 }
 
 // Print the winner of the election
