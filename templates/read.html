@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Read
+{% endblock %}
+
+{% block body %}
+    <li class="nav-item"><a class="nav-link" href="/do">Do</a></li>
+    <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+    <li class="nav-item"><a class="nav-link" href="/read"><span class="green">Read</span></a></li>
+    <li class="nav-item"><a class="nav-link" href="/watch">Watch</a></li>
+{% endblock %}
+
+{% block main %}
+{% if error %}
+        <p class=error><strong>{{ error }}</strong>
+    {% endif %}
+    <form action="/read" method="post">
+        <div class="input-group">
+            <input required autofocus autocomplete="off" class="form-control" name="what" placeholder="What" type="text">
+            <input autocomplete="off" class="form-control" name="details" placeholder="Details" type="text">
+            <button class="btn btn-primary" type="submit">Add to MustRead</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block content %}
+    <div class="container paddedtable">
+        <table id="data" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>What</th>
+                    <th>Details</th>
+                    <th>Added</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row.whatread }}</td>
+                        <td>{{ row.details }}</td>
+                        <td>{{ row.Timestamp }}</td>
+                        <td>
+                            <form method="post">
+                                <input type="submit" name="delete" value="Delete">
+                                <input type="hidden" name="id" value="{{ row.id }}">
+                             </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        order: [2, 'desc'],
+        columns: [
+          null,
+          {orderable: false},
+          {"width": "15%", searchable: false},
+          {"width": "5%", orderable: false, searchable: false}],
+      });
+    });
+  </script>
+{% endblock %}

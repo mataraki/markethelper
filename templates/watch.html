@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Watch
+{% endblock %}
+
+{% block body %}
+    <li class="nav-item"><a class="nav-link" href="/do">Do</a></li>
+    <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+    <li class="nav-item"><a class="nav-link" href="/read">Read</a></li>
+    <li class="nav-item"><a class="nav-link" href="/watch"><span class="green">Watch</span></a></li>
+{% endblock %}
+
+{% block head %}
+<link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+<script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+
+<script type="text/javascript">
+$(function() {
+    $("#autocomplete").autocomplete({
+        source:function(request, response) {
+            $.getJSON("{{url_for('autocomplete')}}",{
+                q: request.term, // in flask, "q" will be the argument to look for using request.args
+            }, function(data) {
+                response(data.matching_results); // matching_results from jsonify
+            });
+        },
+        minLength: 2,
+        select: function(event, ui) {
+            console.log(ui.item.value); // not in your question, but might help later
+        }
+    });
+})
+</script>
+{% endblock %}
+
+{% block main %}
+    {% if error %}
+        <p class=error><strong>{{ error }}</strong>
+    {% endif %}
+    <form action="/watch" method="post">
+        <div class="input-group">
+            <input required autofocus id="autocomplete" autocomplete="off" class="form-control input-lg" name="what" placeholder="What" type="text">
+            <input autocomplete="off" class="form-control" name="details" placeholder="Details" type="text">
+            <button class="btn btn-primary" type="submit">Add to MustWatch</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block content %}
+    <div class="container paddedtable">
+        <table id="data" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>What</th>
+                    <th>IMDb</th>
+                    <th>Details</th>
+                    <th>Added</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row.whatwatch }}</td>
+                        <td>{{ row.rating }}</td>
+                        <td>{{ row.details }}</td>
+                        <td>{{ row.Timestamp }}</td>
+                        <td>
+                            <form method="post">
+                                <input type="submit" name="delete" value="Delete">
+                                <input type="hidden" name="id" value="{{ row.id }}">
+                             </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        order: [3, 'desc'],
+        columns: [
+          null,
+          {"width": "5%", searchable: false},
+          {"width": "40%", orderable: false},
+          {"width": "15%", searchable: false},
+          {"width": "5%", orderable: false, searchable: false}],
+      });
+    });
+    </script>
+{% endblock %}

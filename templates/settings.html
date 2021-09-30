@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Prefer
+{% endblock %}
+
+{% block body %}
+    <li class="nav-item"><a class="nav-link" href="/do">Do</a></li>
+    <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+    <li class="nav-item"><a class="nav-link" href="/read">Read</a></li>
+    <li class="nav-item"><a class="nav-link" href="/watch">Watch</a></li>
+{% endblock %}
+
+{% block main %}
+    <p>You can choose the page loading for you automatically</p>
+    <p>Currently it's the <strong>{{ current }}</strong> page</p>
+    {% if error %}
+        <p class=error><strong>{{ error }}</strong>
+    {% endif %}
+    <br>
+    <form action="/settings" method="post">
+        <div class="form-group mb-3">
+            <select autofocus class="form-control" name="preference" type="text">
+                    {% for preference in preferences %}
+                        <option value="{{ preference }}">{{ preference }}</option>
+                    {% endfor %}
+            </select>
+        </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}

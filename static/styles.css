@@ -1,0 +1,120 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+/* Colors for menu */
+nav .nav-item
+{
+    font-family: 'Merriweather', serif;
+}
+
+/* Colors for menu */
+nav .nav-item .green
+{
+    color: #2e944b;
+    font-weight: 900;
+}
+
+html
+{
+    height: 100%; 
+    width: 100%;
+}
+
+body
+{
+    height: 100%; 
+    width: 100%;
+}
+
+.backgroundimage
+{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("bgimg.svg");
+    background-origin: content-box;
+    min-height: 100%;
+    height: fit-content;
+}
+
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main .form-control:focus 
+{
+    border-color: #2e944b;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(46, 148, 75, 0.6);
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* Constrain images on small screens */
+    max-width: 100%;
+}
+
+.paddedtable
+{
+    padding: 3rem 3rem 20rem 3rem;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited
+{
+    border-color: #2e944b !important;
+    background-color: #2e944b !important;
+}
+
+.btn-primary:focus, .btn-primary:active:focus
+{
+    border-color: #2e944b !important;
+    background-color: #2e944b !important;
+    box-shadow: 0 0 0 .2rem rgba(46, 148, 75, 0.6)
+}
+
+.page-item .page-link 
+{
+    box-shadow: none;
+}
+
+.page-item.active .page-link
+{
+    background-color: #2e944b;
+    border-color: #2e944b;
+    box-shadow: none;
+}
+
+h2 
+{
+    font-family: 'Merriweather', serif;
+    color: #2e944b;
+}
+
+h5 
+{
+    font-family: 'Merriweather', serif;
+}

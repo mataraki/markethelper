@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <li class="nav-item"><a class="nav-link" href="/do">Do</a></li>
+    <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+    <li class="nav-item"><a class="nav-link" href="/read">Read</a></li>
+    <li class="nav-item"><a class="nav-link" href="/watch">Watch</a></li>
+{% endblock %}
+
+{% block content %}
+    <h2>Keep only important things in mind. We will handle everything else!</h2>
+    <br>
+    <br>
+    <br>
+    <h5><strong>I Must</strong> is the tool made to help you keep track of things you need to do, buy, read or watch.</h5>
+    <h5>Just visit the corresponding page and add the thing you don't want to forget, with date or other details.</h5>
+    <br>
+    <h5>As easy as that!</h5>
+    <a href='/login'>
+        <div style="text-align:center">
+            <button class="btn btn-primary mb-3">Log In</button>
+        </div>
+    </a>
+    <p style="text-align:center">or</p>
+    <a href='/register'>
+        <div style="text-align:center">
+            <button class="btn btn-primary">Get Started</button>
+        </div>
+    </a>
+{% endblock %}
