@@ -30,7 +30,7 @@ a:hover {
 
 .multi_form {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 25%;
     -moz-transform: translateX(-20%) translateY(-50%);
     -webkit-transform: translateX(-20%) translateY(-50%);
