@@ -1,0 +1,67 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message %}
+        <div style="text-align: center;">{{ message }}</div>
+    {% endif %}
+    {% for listing in listings %}
+    <h2>Listing: {{ listing.title }}</h2>
+        <div class="infocontainer" style="margin-bottom: 50px;">
+            {% if loggedin %}
+                {% if watched %}
+                    <a href="{% url 'unwatch' listing.id %}">Remove from watchlist</a>
+                {% else %}
+                    <a href="{% url 'watch' listing.id %}">Add to watchlist</a>
+                {% endif %}
+            {% endif %}
+            <br>
+            <img src="{{ listing.photo }}" height="400px">
+            <p>{{ listing.description }}</p>
+            <h2>${{ listing.price }}</h2>
+            <p>{{ bidcount }} bids so far. {% if bided %}Your bid is the current bid.{% endif %}</p>
+            {% if isopen %}
+                {% if loggedin %}
+                    {% if owned %}
+                        <a href="{% url 'close' listing.id %}">Close the listing</a>
+                    {% else %}
+                        <form action="{% url 'bid' listing.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input required class="form-control" type="number" name="bid" placeholder="Bid, $" min="0" step="0.01">
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Place Bid">
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <a href="/login">Sign in to place a bid</a>
+                {% endif %}
+            {% else %}
+                <p>Auction is closed. {{ winner }} is the winner.</p>
+            {% endif %}
+            <h4 style="margin-top: 50px;">Details</h4>
+            <ul>
+                <li>Listed by: <a href="/user/{{ listing.user }}">{{ listing.user }}</a></li>
+                <li>Category: {% if categorized %}<a href="/categories/{{ listing.category }}">{% endif %}{{ listing.category }}{% if categorized %}</a>{% endif %}</li>
+            </ul>
+        </div>
+        {% if loggedin %}
+            <form action="{% url 'comment' listing.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea required class="form-control" type="text" name="comment" placeholder="Add comment"></textarea>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+        {% else %}
+            <a href="/login">Sign in to leave a comment</a>
+        {% endif %}
+        <h3 style="margin-top: 25px;">Comments:</h3>
+        {% for comment in comments %}
+            <div class="listing">
+                <h4>{{ comment.user }}</h4>
+                <p>{{ comment.text }}</p>
+                <p class="datetime">{{ comment.date }}</p>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

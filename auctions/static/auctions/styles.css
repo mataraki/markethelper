@@ -1,0 +1,46 @@
+body {
+    padding: 10px;
+}
+
+.listing {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.1);
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.listing div.imgcontainer {
+    width: 500px;
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.listing img {
+    height: 200px;
+    width: auto;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.listing div.infocontainer {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.listing h3,
+.listing h4,
+.listing h5,
+.listing p {
+    display: block;
+    margin: 25px 0 0 0;
+    padding-bottom: 5px;
+}
+
+.listing .datetime {
+    color: gray;
+    font-size: small;
+}
