@@ -1,0 +1,137 @@
+@keyframes appear {
+
+    0% {
+        opacity: 1;
+        height: 100%;
+        line-height: 100%;
+        margin: 5px 25px 5px;
+        padding: 25px;
+    }
+
+
+    1% {
+        opacity: 0;
+        height: 0px;
+        line-height: 0px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    25% {
+        opacity: 0;
+        height: 100%;
+        line-height: 100%;
+        margin: 5px 25px 5px;
+        padding: 25px;
+    }
+
+    100% {
+        opacity: 1;
+        height: 100%;
+        line-height: 100%;
+        margin: 5px 25px 5px;
+        padding: 25px;
+    }
+}
+
+@keyframes appear2 {
+
+    0% {
+        opacity: 0;
+        height: 0px;
+        line-height: 0px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    50% {
+        opacity: 1;
+        height: 100%;
+        line-height: 100%;
+        margin: 5px 25px 5px;
+        padding: 25px;
+    }
+
+    100% {
+        opacity: 1;
+        height: 100%;
+        line-height: 100%;
+        margin: 5px 25px 5px;
+        padding: 25px;
+    }
+}
+
+body {
+    padding: 10px;
+}
+
+h1, h6 {
+    margin: 20px;
+}
+
+h6 {
+    font-weight: normal;
+}
+
+h1, button {
+    display: inline-block;
+}
+
+.btn {
+    vertical-align: super;
+}
+
+.feedpost {
+    border: 1px solid rgba(0,0,0,.1);
+    opacity: 1;
+    height: 100%;
+    line-height: 100%;
+    margin: 5px 25px 5px;
+    padding: 25px;
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.feedpost h5 {
+    margin: 0px 0px 10px 0px;
+}
+
+.feedpost p,
+.feedpost a {
+    margin: 5px 0px 5px;
+}
+
+.feedpost img {
+    vertical-align: baseline;
+    margin-right: 1px;
+}
+
+.feedpost .timestamp,
+.feedpost .likes {
+    color: grey;
+}
+
+.likes img,
+.likes div {
+    display: inline-block;
+}
+
+.pagination {
+    animation-name: appear2;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+a:not([href]) {
+    color: #007bff;
+    background-color: transparent;
+}
+
+a:not([href]):hover {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}

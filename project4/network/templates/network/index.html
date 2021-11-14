@@ -1,0 +1,45 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h1>{{ header }}</h1>
+    {% if userpage %}
+        {% if user.is_authenticated %}
+            {% if followfeature %}
+                <button id="follow-button" class="btn btn-primary">{% if followed %}Unfollow{% else %}Follow{% endif %}</button>
+            {% endif %}
+        {% endif %}
+        <h6><strong id="followers">{{ followers }}</strong> followers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>{{ follows }}</strong> follows</h6>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <form id="newpost-form">
+        {% csrf_token %}
+            <div id="newpost" class="feedpost">
+                <h5>New Post</h5>
+                <div class="form-group">
+                    <textarea id="newpost-body" class="form-control"></textarea>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Post">
+            </div>
+        </form>
+    {% endif %}
+    <div id ="posts-view">
+    </div>
+    <nav aria-label="Page navigation">
+        <ul id="navigation-view" class="pagination justify-content-center">
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block script %}
+    <script>
+        const apipath = "{{ apipath }}";
+        const newpost = "{{ newpost }}";
+        const username = "{{ name }}";
+        const pagecount = "{{ pagecount }}";
+        var pagenumber = "{{ pagenumber }}";
+        const viewer = "{{ viewer }}";
+    </script>
+    <script src="{% static 'network/index.js' %}"></script>
+{% endblock %}
+
