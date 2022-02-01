@@ -1,0 +1,131 @@
+body {
+    padding: 10px;
+    background-color: #001122;
+    color:blanchedalmond;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav {
+    color:blanchedalmond;
+}
+
+td {
+    background-color: #001122;
+    color:blanchedalmond;
+}
+
+.spacer {
+    aspect-ratio: 1920/250;
+    padding: 0px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.layer1 {
+    background-image: url('background.svg');
+}
+
+.message {
+    margin: 20px;
+    text-align: center;
+}
+
+#portfolio-info {
+    margin: 50px;
+    padding: 25px;
+}
+
+#portfolio-name, #portfolio-stats {
+    display: inline-block;
+}
+
+#portfolio-name {
+    float: left;
+}
+
+#portfolio-stats {
+    float: right;
+}
+
+#portfolio-invested, #portfolio-current, #portfolio-dynamics {
+    display: inline-block;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+#portfolio-buttons {
+    text-align: center;
+    margin: 50px;
+}
+
+#sharepage-top, #sharepage-notes, #sharepage-events {
+    margin: 75px 400px 0px 400px;
+}
+
+#sharepage-top-left, #sharepage-top-right {
+    display: inline-block;
+}
+
+#sharepage-top-left {
+    float: left;
+}
+
+#sharepage-top-right {
+    float: right;
+}
+
+#sharepage-name {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#sharepage-price, #sharepage-dynamics {
+    display: inline-block;
+    margin-right: 50px;
+    font-size: larger;
+}
+
+.sharepage-headers {
+    font-size: larger;
+}
+
+#refresh-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15%;
+}
+
+#deposit-button, #buy-button, #sell-button {
+    width: 100px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.form-inline {
+    justify-content: center;
+    display: none;
+}
+
+.form-control, .form-control:focus {
+    background-color: #001122;
+    color: white;
+}
+
+.share-block {
+    text-align: center;
+    margin: 25px 200px 50px 200px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+}

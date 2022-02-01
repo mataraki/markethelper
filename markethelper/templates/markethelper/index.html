@@ -1,0 +1,150 @@
+{% extends "markethelper/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div id="portfolio-info">
+        <div id="portfolio-name">
+            <h5>{{ name }}'s Portfolio</h5>
+        </div>    
+        <div id="portfolio-stats">
+            <div id="portfolio-invested">
+                <h5>Invested: {{ invested }}</h5>
+            </div>
+            <div id="portfolio-current">
+                <h5 id="networth"></h5>
+            </div>  
+            <div id="portfolio-dynamics">
+                <h5 id="dynamics"></h5>
+            </div>    
+        </div>    
+    </div>
+    <div id="portfolio-buttons">
+        <button class="btn btn-primary" id="deposit-button">Deposit</button>
+        <button class="btn btn-primary" id="buy-button">Buy</button>
+        <button class="btn btn-primary" id="sell-button">Sell</button>
+    </div>
+    <form class="form-inline" id="deposit-form">
+        <div class="form-group mx-sm-3 mb-2">
+            <input required class="form-control" type="number" step=".01" id="deposit-amount" placeholder="Amount" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Deposit</button>
+    </form>
+    <form class="form-inline" id="buy-form">
+        <div class="form-group mx-sm-3 mb-2">
+            <select class="form-control" id="buy-type">
+                <option>Stock</option>
+                <option>ETF</option>
+                <option>Bond</option>
+            </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input required class="form-control" type="text" id="buy-ticker" placeholder="Ticker" autocomplete="off">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input required class="form-control" type="text" id="buy-name" placeholder="Name" autocomplete="off">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input required class="form-control" type="number" id="buy-quantity" placeholder="Quantity" autocomplete="off">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input required class="form-control" type="number" step=".01" id="buy-price" placeholder="Price" autocomplete="off">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <select required class="form-control" id="buy-currency">
+                <option>USD</option>
+                <option>RUB</option>
+                <option>EUR</option>
+            </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <select required class="form-control" id="buy-rating">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Buy</button>
+    </form>
+    <form class="form-inline" id="sell-form">
+        <div class="form-group mx-sm-3 mb-2">
+            <select required class="form-control" id="sell-ticker">
+            </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input required class="form-control" type="number" id="sell-quantity" placeholder="Quantity" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Sell</button>
+    </form>
+    <div id="refresh-button">
+        <button class="btn btn-primary" id="refresh"><img src="/static/markethelper/refresh-icon.png" height="25"></button>
+    </div>    
+    <div class="share-block" id="stock-container">
+        <h4>Stocks</h4>
+        <table id="stocks-table" class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <th scope="col">Worth</th>
+                <th scope="col">Rating</th>
+                <th scope="col">%</th>
+              </tr>
+            </thead>
+            <tbody id="stocks-table-body">
+            </tbody>
+        </table>          
+    </div>
+    <div class="share-block" id="etf-container">
+        <h4>ETFs</h4>
+        <table id="etfs-table" class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <th scope="col">Worth</th>
+                <th scope="col">Rating</th>
+                <th scope="col">%</th>
+              </tr>
+            </thead>
+            <tbody id="etfs-table-body">
+            </tbody>
+        </table>
+    </div>
+    <div class="share-block" id="bond-container">
+        <h4>Bonds</h4>
+        <table id="bonds-table" class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <th scope="col">Worth</th>
+                <th scope="col">Rating</th>
+                <th scope="col">%</th>
+              </tr>
+            </thead>
+            <tbody id="bonds-table-body">
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var invested = "{{ invested }}"
+        var token = "{{ token }}"
+        var networth = 0
+        var dynamics = 0
+        var usdtorub = 0
+        var eurtorub = 0
+        let holdings = []
+        let successful = []
+        var color = 'black'
+    </script>
+    <script src="{% static 'markethelper/index.js' %}"></script>
+{% endblock %}
+

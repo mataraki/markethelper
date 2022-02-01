@@ -1,0 +1,13 @@
+{% extends "markethelper/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div id='calendar'></div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var events_list = []
+    </script>
+    <script src="{% static 'markethelper/calendarpage.js' %}"></script>
+{% endblock %}

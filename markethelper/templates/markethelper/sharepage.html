@@ -1,0 +1,56 @@
+{% extends "markethelper/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div id="sharepage-top">
+        <div id="sharepage-top-left">
+            <div id="sharepage-name">{{ share.name }}</div>
+            <div>({{ share.ticker }})</div>
+            <div>{{ type }}, {{ share.quantity }} pcs.</div>
+            <div>Rating: {{ share.rating }}/5</div>
+        </div>
+        <div id="sharepage-top-right">
+            <br>
+            <div id="sharepage-priceinfo">
+                <div id="sharepage-price">{{ share.currency }} {{ share.pricecurrent }} &nbsp;&nbsp; ({{ total }} total)</div>
+                <div id="sharepage-dynamics">{{ dynamics }}%</div>
+            </div>
+            <form class="form-inline" id="sharepage-form-changeprice" method="post">
+                {% csrf_token %}
+                <div class="form-group mx-sm-3 mb-2">
+                    <input required class="form-control" type="text" id="sharepage-form-price" name="price-form" placeholder="Price" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
+            <button class="btn btn-primary mb-2" id="change-price">Change price</button>
+        </div>
+    </div>
+    <br><br><br><br><br>
+    <div id="sharepage-notes">
+        <div class="sharepage-headers">
+            Notes
+        </div>
+        <textarea required class="form-control" id="sharepage-notes-text" type="text" name="notes" placeholder="{{ share.notes }}"></textarea>
+        <button type="submit" class="btn btn-primary mb-2" id="edit-notes">Edit notes</button>
+    </div>
+    <div id="sharepage-events">
+        <div class="sharepage-headers">
+            Events
+        </div>
+        <br>
+        <div>
+            {% for event in events %}
+                <p>{{ event }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        var dynamics = parseFloat("{{ dynamics }}")
+        var share = "{{ share.ticker }}"
+    </script>
+    <script src="{% static 'markethelper/sharepage.js' %}"></script>
+{% endblock %}
+
